@@ -1,0 +1,8 @@
+.audit-root {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  min-height: 320px;
+}
+
+.audit-root mark {
+  background-clip: padding-box;
+}
