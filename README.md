@@ -43,7 +43,7 @@ flowchart LR
 
 ## Run it
 
-Requires Node.js ≥ 22.22.2 and pnpm 10.
+Requires Node.js ≥ 22.22.2 and pnpm 12.
 
 ```bash
 pnpm install
