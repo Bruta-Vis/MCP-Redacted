@@ -1,4 +1,4 @@
-import { MCPServer } from "mcp-use";
+import { isBuilding, MCPServer } from "mcp-use";
 import { z } from "zod";
 import { AuditLog } from "./src/audit.js";
 import { loadConfig } from "./src/config.js";
@@ -138,7 +138,10 @@ export const previewRedaction = server.tool(
 );
 
 // ---- Upstreams ----------------------------------------------------------------
-// Must be mounted before the server starts listening.
-const upstreamStatuses = await mountUpstreams(server, config.upstreams, { engine, audit });
+// Must be mounted before the server starts listening. `mcp-use build` evaluates
+// this module to check views but serves nothing, so skip connecting there.
+const upstreamStatuses = isBuilding()
+    ? []
+    : await mountUpstreams(server, config.upstreams, { engine, audit });
 
 export default server;
