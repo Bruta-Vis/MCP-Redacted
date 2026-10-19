@@ -118,6 +118,12 @@ server.tool(
   },
 );
 
-const port = Number(process.env.CRM_PORT ?? 3001);
-await server.listen(port);
-console.log(`demo-crm listening on http://localhost:${port}/mcp`);
+export default server;
+
+// `pnpm dev:crm` runs this file directly; `mcp-use build --entry` / `mcp-use start`
+// (used when deploying the CRM as its own cloud server) import the default export instead.
+if (process.argv[1]?.endsWith("crm-server.ts")) {
+  const port = Number(process.env.CRM_PORT ?? 3001);
+  await server.listen(port);
+  console.log(`demo-crm listening on http://localhost:${port}/mcp`);
+}
